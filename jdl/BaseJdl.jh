@@ -1,0 +1,30 @@
+entity Camera{
+	name String
+    ipaddress String
+    location String
+    type CameraType
+}
+
+enum CameraType{
+	WEBCAM,IP_CAMERA
+}
+
+enum GENDER{
+MALE,FEMALE
+}
+
+enum AGE{
+CHILD,YOUNG,MIDDLE,OLDER
+}
+
+enum EMOTION{
+HAPPY, SURPRISE, NEUTRAL, ANGRY
+}
+
+entity PersonData {
+	insertDate LocalDate
+	age AGE
+	gender GENDER
+	emotion EMOTION
+}
+
