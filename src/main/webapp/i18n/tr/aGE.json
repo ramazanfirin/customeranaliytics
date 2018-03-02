@@ -1,0 +1,11 @@
+{
+    "customeranalyticsApp": {
+        "AGE" : {
+            "null": "",
+            "CHILD": "CHILD",
+            "YOUNG": "YOUNG",
+            "MIDDLE": "MIDDLE",
+            "OLDER": "OLDER"
+        }
+    }
+}

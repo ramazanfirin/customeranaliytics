@@ -1,0 +1,24 @@
+{
+    "customeranalyticsApp": {
+        "personData" : {
+            "home": {
+                "title": "Person Data",
+                "createLabel": "Create a new Person Data",
+                "createOrEditLabel": "Create or edit a Person Data"
+            },
+            "created": "A new Person Data is created with identifier {{ param }}",
+            "updated": "A Person Data is updated with identifier {{ param }}",
+            "deleted": "A Person Data is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Person Data {{ id }}?"
+            },
+            "detail": {
+                "title": "Person Data"
+            },
+            "insertDate": "Insert Date",
+            "age": "Age",
+            "gender": "Gender",
+            "emotion": "Emotion"
+        }
+    }
+}

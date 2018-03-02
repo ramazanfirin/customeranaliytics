@@ -1,0 +1,9 @@
+{
+    "customeranalyticsApp": {
+        "CameraType" : {
+            "null": "",
+            "WEBCAM": "WEBCAM",
+            "IP_CAMERA": "IP_CAMERA"
+        }
+    }
+}

@@ -1,0 +1,61 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPersonDataLabel" data-translate="customeranalyticsApp.personData.home.createOrEditLabel">Create or edit a Person Data</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.personData.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.personData.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="customeranalyticsApp.personData.insertDate" for="field_insertDate">Insert Date</label>
+                <div class="input-group">
+                    <input id="field_insertDate" type="text" class="form-control" name="insertDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.personData.insertDate" is-open="vm.datePickerOpenStatus.insertDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('insertDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="customeranalyticsApp.personData.age" for="field_age">Age</label>
+            <select class="form-control" name="age" ng-model="vm.personData.age" id="field_age">
+                <option value="CHILD" data-translate="customeranalyticsApp.AGE.CHILD">CHILD</option>
+                <option value="YOUNG" data-translate="customeranalyticsApp.AGE.YOUNG">YOUNG</option>
+                <option value="MIDDLE" data-translate="customeranalyticsApp.AGE.MIDDLE">MIDDLE</option>
+                <option value="OLDER" data-translate="customeranalyticsApp.AGE.OLDER">OLDER</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="customeranalyticsApp.personData.gender" for="field_gender">Gender</label>
+            <select class="form-control" name="gender" ng-model="vm.personData.gender" id="field_gender">
+                <option value="MALE" data-translate="customeranalyticsApp.GENDER.MALE">MALE</option>
+                <option value="FEMALE" data-translate="customeranalyticsApp.GENDER.FEMALE">FEMALE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="customeranalyticsApp.personData.emotion" for="field_emotion">Emotion</label>
+            <select class="form-control" name="emotion" ng-model="vm.personData.emotion" id="field_emotion">
+                <option value="HAPPY" data-translate="customeranalyticsApp.EMOTION.HAPPY">HAPPY</option>
+                <option value="SURPRISE" data-translate="customeranalyticsApp.EMOTION.SURPRISE">SURPRISE</option>
+                <option value="NEUTRAL" data-translate="customeranalyticsApp.EMOTION.NEUTRAL">NEUTRAL</option>
+                <option value="ANGRY" data-translate="customeranalyticsApp.EMOTION.ANGRY">ANGRY</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,11 @@
+{
+    "customeranalyticsApp": {
+        "EMOTION" : {
+            "null": "",
+            "HAPPY": "HAPPY",
+            "SURPRISE": "SURPRISE",
+            "NEUTRAL": "NEUTRAL",
+            "ANGRY": "ANGRY"
+        }
+    }
+}

@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="customeranalyticsApp.personData.detail.title">Person Data</span> {{vm.personData.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="customeranalyticsApp.personData.insertDate">Insert Date</span></dt>
+        <dd>
+            <span>{{vm.personData.insertDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="customeranalyticsApp.personData.age">Age</span></dt>
+        <dd>
+            <span data-translate="{{'customeranalyticsApp.AGE.' + vm.personData.age}}">{{vm.personData.age}}</span>
+        </dd>
+        <dt><span data-translate="customeranalyticsApp.personData.gender">Gender</span></dt>
+        <dd>
+            <span data-translate="{{'customeranalyticsApp.GENDER.' + vm.personData.gender}}">{{vm.personData.gender}}</span>
+        </dd>
+        <dt><span data-translate="customeranalyticsApp.personData.emotion">Emotion</span></dt>
+        <dd>
+            <span data-translate="{{'customeranalyticsApp.EMOTION.' + vm.personData.emotion}}">{{vm.personData.emotion}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="person-data-detail.edit({id:vm.personData.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

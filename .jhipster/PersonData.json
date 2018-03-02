@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "insertDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "age",
+            "fieldType": "AGE",
+            "fieldValues": "CHILD,YOUNG,MIDDLE,OLDER"
+        },
+        {
+            "fieldName": "gender",
+            "fieldType": "GENDER",
+            "fieldValues": "MALE,FEMALE"
+        },
+        {
+            "fieldName": "emotion",
+            "fieldType": "EMOTION",
+            "fieldValues": "HAPPY,SURPRISE,NEUTRAL,ANGRY"
+        }
+    ],
+    "changelogDate": "20180302235202",
+    "entityTableName": "person_data",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}
