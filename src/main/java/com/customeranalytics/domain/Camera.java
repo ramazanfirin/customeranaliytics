@@ -7,8 +7,12 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import com.customeranalytics.domain.enumeration.CameraType;
+
 
 /**
  * A Camera.
@@ -19,7 +23,7 @@ import com.customeranalytics.domain.enumeration.CameraType;
 public class Camera implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,6 +42,7 @@ public class Camera implements Serializable {
     private CameraType type;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    
     public Long getId() {
         return id;
     }

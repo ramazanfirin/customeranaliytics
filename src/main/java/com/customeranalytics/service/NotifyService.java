@@ -1,76 +1,75 @@
 package com.customeranalytics.service;
 
 import java.io.IOException;
-import java.util.Map;
+import java.time.LocalDate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import com.customeranalytics.service.enums.AgeEnum;
-import com.customeranalytics.service.enums.GenderEnum;
+import com.customeranalytics.domain.PersonData;
+import com.customeranalytics.domain.enumeration.AGE;
+import com.customeranalytics.domain.enumeration.GENDER;
+import com.customeranalytics.repository.PersonDataRepository;
+import com.customeranalytics.web.rest.AccountResource;
+
 
 @Service
 public class NotifyService {
 
+    private final Logger log = LoggerFactory.getLogger(NotifyService.class);
+	
+	private final  PersonDataRepository personDataRepository;
+	
+	
+	
+	public NotifyService(PersonDataRepository personDataRepository) {
+		super();
+		this.personDataRepository = personDataRepository;
+	}
 
-	long lastNotifyDate;
-	Boolean notifyDone=false;
-	
-	
 	@Async
 	public void sendNotify(Float age,Float genderValue) throws IOException{
-		GenderEnum gender = getGenderEnum(genderValue);
-		AgeEnum ageEnum = getAgeGroup(age);
+		GENDER gender = getGenderEnum(genderValue);
+		AGE ageEnum = getAgeGroup(age);
 		String result = ageEnum.toString()+"_"+gender.toString();
 		System.out.println(result);
 		
+		PersonData personData = new PersonData();
+		personData.setAge(ageEnum);
+		personData.setEmotion(null);
+		personData.setGender(gender);
+		personData.setInsertDate(LocalDate.now());
 		
 		
-		
+		personDataRepository.save(personData);
+		log.info("persondata kaydi yapildi."+personData.getAge()+","+personData.getGender().toString());
 	}
 	
-	private AgeEnum getAgeGroup(Float age){
+	private AGE getAgeGroup(Float age){
 		if(age<15)
-			return AgeEnum.CHILD;
+			return AGE.CHILD;
 		else if(age>15 && age<35)
-			return AgeEnum.YOUNG;
+			return AGE.YOUNG;
 		else if(age>35 && age<55)
-			return AgeEnum.MIDDLE_AGE;
+			return AGE.MIDDLE;
 		else if(age>55)
-			return AgeEnum.OLDER;
+			return AGE.OLDER;
 		else
-			return AgeEnum.MIDDLE_AGE;
+			return AGE.MIDDLE;
 	}
 	
-	private GenderEnum getGenderEnum(Float genderValue){
+	private GENDER getGenderEnum(Float genderValue){
 		if(genderValue<0)
-			return GenderEnum.MALE;
+			return GENDER.MALE;
 		else
-			return GenderEnum.FEMALE;
+			return GENDER.FEMALE;
 		
 	}
 
 	
-	public static void main(String[] args) throws IOException {
-//		NotifyService notifyService = new NotifyService();
-//		Map<String,String> playListMap  = notifyService.getPlayLists();		
-//		System.out.println("bitti");
-	}
-
-	public long getLastNotifyDate() {
-		return lastNotifyDate;
-	}
-
-	public void setLastNotifyDate(long lastNotifyDate) {
-		this.lastNotifyDate = lastNotifyDate;
-	}
-
-	public Boolean getNotifyDone() {
-		return notifyDone;
-	}
-
-	public void setNotifyDone(Boolean notifyDone) {
-		this.notifyDone = notifyDone;
-	}
 	
 }
