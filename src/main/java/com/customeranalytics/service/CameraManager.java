@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
@@ -56,13 +59,15 @@ public class CameraManager {
 		Webcam.setDriver(new MyCompositeDriver());
 	}
 	
-	
+	 @PostConstruct
+	public void init() throws IOException{
+		start();
+	}
 	
 	public CameraManager(CameraRepository cameraRepository,NotifyService notifyService) throws IOException {
 		super();
 		this.cameraRepository = cameraRepository;
 		this.notifyService = notifyService;
-		start();
 	}
 
 	private void registerAll() throws IOException{
