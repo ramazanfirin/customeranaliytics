@@ -1,22 +1,31 @@
 package com.customeranalytics.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.customeranalytics.domain.PersonData;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-import com.customeranalytics.repository.PersonDataRepository;
-import com.customeranalytics.web.rest.errors.BadRequestAlertException;
-import com.customeranalytics.web.rest.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.codahale.metrics.annotation.Timed;
+import com.customeranalytics.domain.PersonData;
+import com.customeranalytics.repository.PersonDataRepository;
+import com.customeranalytics.web.rest.errors.BadRequestAlertException;
+import com.customeranalytics.web.rest.util.HeaderUtil;
+import com.customeranalytics.web.rest.vm.GenderQueryVM;
 
-import java.util.List;
-import java.util.Optional;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing PersonData.
@@ -116,4 +125,17 @@ public class PersonDataResource {
         personDataRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    
+    @PostMapping("/person-data/reports")
+    @Timed
+    public List<PersonData> getGenderReports(@RequestBody GenderQueryVM genderQueryVM) {
+        //log.debug("REST request to get PersonData : {}", id);
+        List<PersonData> result= new ArrayList<PersonData>();
+        //PersonData personData = personDataRepository.findOne(id);
+        personDataRepository.getGenderReport(genderQueryVM.getStartDate(), genderQueryVM.getEndDate(), genderQueryVM.getCamera());
+        
+        return result;
+    }
+    
 }

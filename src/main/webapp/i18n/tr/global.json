@@ -5,6 +5,10 @@
         "menu": {
             "home": "Ana Sayfa",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
+            "reports": {
+            	"genderReport":"Cinsiyet Raporu",
+            	"ageReport":"Yaş Raporu"
+            },
             "entities": {
                 "main": "Varlıklar",
                 "camera": "Camera",
@@ -43,7 +47,11 @@
             "confirmpassword": "Yeni Şifre Tekrar",
             "confirmpassword.placeholder": "Yeni Şifre Tekrar",
             "email": "E-posta",
-            "email.placeholder": "E-posta adresiniz"
+            "email.placeholder": "E-posta adresiniz",
+            "startDate":"Başlangıç Tarihi",
+            "endDate":"Bitiş Tarihi",
+            "camera":"Kamera"
+            
         },
         "messages": {
             "info": {

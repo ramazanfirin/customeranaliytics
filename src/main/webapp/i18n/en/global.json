@@ -5,6 +5,10 @@
         "menu": {
             "home": "Home",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
+            "reports": {
+            	"genderReport":"Cinsiyet Raporu",
+            	"ageReport":"Yaş Raporu"
+            },
             "entities": {
                 "main": "Entities",
                 "camera": "Camera",
@@ -43,7 +47,10 @@
             "confirmpassword": "New password confirmation",
             "confirmpassword.placeholder": "Confirm the new password",
             "email": "Email",
-            "email.placeholder": "Your email"
+            "email.placeholder": "Your email",
+            "startDate":"Başlangıç Tarihi",
+            "endDate":"Bitiş Tarihi",
+            "camera":"Kamera"
         },
         "messages": {
             "info": {
