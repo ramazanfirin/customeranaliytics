@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codahale.metrics.annotation.Timed;
 import com.customeranalytics.domain.PersonData;
 import com.customeranalytics.repository.PersonDataRepository;
+import com.customeranalytics.service.ReportService;
 import com.customeranalytics.web.rest.errors.BadRequestAlertException;
 import com.customeranalytics.web.rest.util.HeaderUtil;
 import com.customeranalytics.web.rest.vm.GenderQueryVM;
+import com.customeranalytics.web.rest.vm.reports.GenderReportDTO;
 
 import io.github.jhipster.web.util.ResponseUtil;
 
@@ -40,8 +42,11 @@ public class PersonDataResource {
 
     private final PersonDataRepository personDataRepository;
 
-    public PersonDataResource(PersonDataRepository personDataRepository) {
+    private final ReportService reportService;
+    
+    public PersonDataResource(PersonDataRepository personDataRepository,ReportService reportService) {
         this.personDataRepository = personDataRepository;
+        this.reportService = reportService;
     }
 
     /**
@@ -129,11 +134,9 @@ public class PersonDataResource {
     
     @PostMapping("/person-data/reports")
     @Timed
-    public List<PersonData> getGenderReports(@RequestBody GenderQueryVM genderQueryVM) {
+    public List<GenderReportDTO> getGenderReports(@RequestBody GenderQueryVM genderQueryVM) {
         //log.debug("REST request to get PersonData : {}", id);
-        List<PersonData> result= new ArrayList<PersonData>();
-        //PersonData personData = personDataRepository.findOne(id);
-        personDataRepository.getGenderReport(genderQueryVM.getStartDate(), genderQueryVM.getEndDate(), genderQueryVM.getCamera());
+        List<GenderReportDTO> result =reportService.getGenderReport(genderQueryVM.getStartDate(), genderQueryVM.getEndDate(), genderQueryVM.getCamera());
         
         return result;
     }

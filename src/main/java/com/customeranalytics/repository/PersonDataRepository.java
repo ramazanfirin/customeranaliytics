@@ -14,7 +14,7 @@ import com.customeranalytics.web.rest.vm.reports.GenderReportDTO;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface PersonDataRepository extends JpaRepository<PersonData, Long>,PersonDataRepositoryCustom {
+public interface PersonDataRepository extends JpaRepository<PersonData, Long>{
 
 	/*
 	

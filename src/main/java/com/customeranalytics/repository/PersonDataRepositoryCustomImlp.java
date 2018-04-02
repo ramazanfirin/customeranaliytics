@@ -35,7 +35,7 @@ public class PersonDataRepositoryCustomImlp implements PersonDataRepositoryCusto
         
 		
         
-        return query.getResultList();
+        return (List<GenderReportDTO>)query.getResultList();
         
 	}
 

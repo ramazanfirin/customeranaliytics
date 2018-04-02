@@ -1,10 +1,21 @@
 package com.customeranalytics.web.rest;
 
-import com.customeranalytics.CustomeranalyticsApp;
+import static com.customeranalytics.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.customeranalytics.domain.PersonData;
-import com.customeranalytics.repository.PersonDataRepository;
-import com.customeranalytics.web.rest.errors.ExceptionTranslator;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,20 +31,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.List;
-
-import static com.customeranalytics.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import com.customeranalytics.CustomeranalyticsApp;
+import com.customeranalytics.domain.PersonData;
 import com.customeranalytics.domain.enumeration.AGE;
-import com.customeranalytics.domain.enumeration.GENDER;
 import com.customeranalytics.domain.enumeration.EMOTION;
+import com.customeranalytics.domain.enumeration.GENDER;
+import com.customeranalytics.repository.PersonDataRepository;
+import com.customeranalytics.service.ReportService;
+import com.customeranalytics.web.rest.errors.ExceptionTranslator;
 /**
  * Test class for the PersonDataResource REST controller.
  *
@@ -57,6 +62,9 @@ public class PersonDataResourceIntTest {
 
     @Autowired
     private PersonDataRepository personDataRepository;
+    
+    @Autowired
+    private ReportService reportService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -77,7 +85,7 @@ public class PersonDataResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PersonDataResource personDataResource = new PersonDataResource(personDataRepository);
+        final PersonDataResource personDataResource = new PersonDataResource(personDataRepository,reportService);
         this.restPersonDataMockMvc = MockMvcBuilders.standaloneSetup(personDataResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -5,20 +5,20 @@ import java.util.Date;
 
 public class GenderQueryVM {
 
-	Date startDate;
-	Date endDate;
+	LocalDate startDate;
+	LocalDate endDate;
 	String camera;
 	
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 	public String getCamera() {
