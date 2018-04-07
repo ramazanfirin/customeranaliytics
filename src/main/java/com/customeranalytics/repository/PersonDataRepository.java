@@ -16,6 +16,8 @@ import com.customeranalytics.web.rest.vm.reports.GenderReportDTO;
 @Repository
 public interface PersonDataRepository extends JpaRepository<PersonData, Long>{
 
+	
+	//SELECT COUNT(*) as count,DATE_FORMAT(insert_date,"%Y-%m-%d"),gender FROM person_data p GROUP BY insert_date,gender
 	/*
 	
 	SELECT 

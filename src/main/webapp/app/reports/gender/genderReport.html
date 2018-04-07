@@ -1,8 +1,8 @@
 <div ng-cloak>
     <div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
-        </div>
+<!--         <div class="col-md-4"> -->
+<!--             <span class="hipster img-responsive img-rounded"></span> -->
+<!--         </div> -->
       
       
       <form name="myForm" novalidate >
@@ -35,6 +35,26 @@
       
       </form>
       
+      <div class="row">
+      <div class="col-md-4">
+      		<canvas id="doughnut" chart-options="vm.options" chart-colors="vm.colors" class="chart chart-doughnut"
+  				chart-data="vm.data" chart-labels="vm.labels">
+			</canvas>   
+        </div>
+        
+        <div class="col-md-4">
+      		<canvas id="doughnut" chart-options="vm.ageOptions" chart-colors="vm.colors" class="chart chart-doughnut"
+  				chart-data="vm.ageData" chart-labels="vm.ageLabels">
+			</canvas>   
+        </div>
+        
+        <div class="col-md-4">
+      		<canvas id="doughnut" chart-options="vm.ageGenderOptions" chart-colors="vm.colors" class="chart chart-doughnut"
+  				chart-data="vm.ageGenderData" chart-labels="vm.ageGenderLabels">
+			</canvas>   
+        </div>
+        
+        </div>
         
     </div>
 </div>

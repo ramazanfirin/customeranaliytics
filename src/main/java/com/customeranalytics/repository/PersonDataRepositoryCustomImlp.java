@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import javax.persistence.TemporalType;
 import javax.transaction.Transactional;
 
+import com.customeranalytics.web.rest.vm.reports.AgeReportDTO;
 import com.customeranalytics.web.rest.vm.reports.GenderReportDTO;
 
 @Transactional
@@ -36,6 +37,27 @@ public class PersonDataRepositoryCustomImlp implements PersonDataRepositoryCusto
 		
         
         return (List<GenderReportDTO>)query.getResultList();
+        
+	}
+	
+	@Override
+	public List<AgeReportDTO> getAgeReport(Date startDate, Date endDate, String camera) {
+		
+		String sql=" SELECT COUNT(*) as count, age FROM person_data p where p.insertDate BETWEEN :startDate AND :endDate ";
+		if(camera!="ALL")
+			sql=sql+" AND p.camera.name=:camera";
+		sql=sql+" GROUP BY age";
+		
+		Query query = entityManager.createNativeQuery(sql, GenderReportDTO.class);
+        query.setParameter("startDate", startDate, TemporalType.DATE);  
+        query.setParameter("endDate", endDate, TemporalType.DATE);  
+       
+        if(camera!="ALL")
+        	query.setParameter("camera",camera);  
+        
+		
+        
+        return (List<AgeReportDTO>)query.getResultList();
         
 	}
 

@@ -2,7 +2,6 @@ package com.customeranalytics.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +24,8 @@ import com.customeranalytics.service.ReportService;
 import com.customeranalytics.web.rest.errors.BadRequestAlertException;
 import com.customeranalytics.web.rest.util.HeaderUtil;
 import com.customeranalytics.web.rest.vm.GenderQueryVM;
+import com.customeranalytics.web.rest.vm.reports.AgeGenderReportDTO;
+import com.customeranalytics.web.rest.vm.reports.AgeReportDTO;
 import com.customeranalytics.web.rest.vm.reports.GenderReportDTO;
 
 import io.github.jhipster.web.util.ResponseUtil;
@@ -137,6 +138,24 @@ public class PersonDataResource {
     public List<GenderReportDTO> getGenderReports(@RequestBody GenderQueryVM genderQueryVM) {
         //log.debug("REST request to get PersonData : {}", id);
         List<GenderReportDTO> result =reportService.getGenderReport(genderQueryVM.getStartDate(), genderQueryVM.getEndDate(), genderQueryVM.getCamera());
+        
+        return result;
+    }
+    
+    @PostMapping("/person-data/agereports")
+    @Timed
+    public List<AgeReportDTO> getAgeReports(@RequestBody GenderQueryVM genderQueryVM) {
+        //log.debug("REST request to get PersonData : {}", id);
+        List<AgeReportDTO> result =reportService.getAgeReport(genderQueryVM.getStartDate(), genderQueryVM.getEndDate(), genderQueryVM.getCamera());
+        
+        return result;
+    }
+    
+    @PostMapping("/person-data/agegenderreports")
+    @Timed
+    public List<AgeGenderReportDTO> getAgeGenderReports(@RequestBody GenderQueryVM genderQueryVM) {
+        //log.debug("REST request to get PersonData : {}", id);
+        List<AgeGenderReportDTO> result =reportService.getGenderAgeReport(genderQueryVM.getStartDate(), genderQueryVM.getEndDate(), genderQueryVM.getCamera());
         
         return result;
     }
