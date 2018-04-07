@@ -1,0 +1,49 @@
+<div ng-cloak>
+    <div class="row">
+<!--         <div class="col-md-4"> -->
+<!--             <span class="hipster img-responsive img-rounded"></span> -->
+<!--         </div> -->
+      
+      
+      <form name="myForm" novalidate >
+      <jhi-alert-error></jhi-alert-error>
+      <div class="form-group">
+            <label class="control-label" data-translate="global.form.camera" for="field_name">Name</label>
+			<select ng-model="vm.camera">
+				<option selected="selected">ALL</option>
+				<option ng-repeat="camera in vm.cameras">{{camera.name}}</option>
+			</select>
+		</div>
+      
+      <div class="form-group">
+            <label class="control-label" data-translate="global.form.startDate" for="field_name">Name</label>
+		     <input type="date" id="exampleInput" name="input" ng-model="vm.startDate"
+      			placeholder="yyyy-MM-dd" min="2001-01-01T00:00:00" max="2023-12-31T00:00:00" required />
+      </div>
+
+
+      
+      <div class="form-group">
+            <label class="control-label" data-translate="global.form.endDate" for="field_name">Name</label>
+           <input type="date" id="exampleInput2" name="input2" ng-model="vm.endDate"
+      	placeholder="yyyy-MM-ddTHH:mm:ss" min="2001-01-01T00:00:00" max="2023-12-31T00:00:00" required />
+      </div>
+      
+      <tt>value = {{vm.startDate | date: "yyyy-MM-ddTHH:mm:ss"}}</tt><br/>
+      
+      <input type="button" ng-click="vm.prepareReport();">
+      
+      </form>
+      
+      <div class="row">
+      <div class="col-md-4">
+<canvas id="base" class="chart-bar" chart-options="vm.options"
+  chart-data="vm.data" chart-labels="vm.labels" >
+</canvas>  
+        </div>
+        
+        
+        </div>
+        
+    </div>
+</div>
