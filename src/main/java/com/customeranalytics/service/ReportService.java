@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
 
+import com.customeranalytics.domain.enumeration.AGE;
 import com.customeranalytics.web.rest.vm.reports.AgeGenderReportDTO;
 import com.customeranalytics.web.rest.vm.reports.AgeReportDTO;
 import com.customeranalytics.web.rest.vm.reports.CountDateDTO;
@@ -121,5 +122,35 @@ public List<CountDateDTO> getTimeSeriesGenderReportAll(LocalDate startDate, Loca
     return (List<CountDateDTO>)query.getResultList();
     
 }
+
+
+public List<CountDateDTO> getTimeSeriesAgeAndGenderReport(LocalDate startDate, LocalDate endDate, String camera,String gender,String age) {
+	
+	String sql=" SELECT new com.customeranalytics.web.rest.vm.reports.CountDateDTO(COUNT(*) ,p.insertDate,p.gender,p.age) FROM PersonData p where p.gender=:gender and p.age=:age and p.insertDate BETWEEN :startDate AND :endDate";
+	if(!camera.equals("ALL"))
+		sql=sql+" AND p.camera.name=:camera";
+	sql=sql+" GROUP BY p.insertDate,p.gender,p.age";
+	
+	Query query = entityManager.createQuery(sql);
+    query.setParameter("startDate", startDate);  
+    query.setParameter("endDate", endDate);  
+    
+    if("MALE".equals(gender))
+    	query.setParameter("gender", com.customeranalytics.domain.enumeration.GENDER.MALE); 
+    else if("FEMALE".equals(gender))
+    	query.setParameter("gender", com.customeranalytics.domain.enumeration.GENDER.FEMALE); 
+    
+    
+    query.setParameter("age", AGE.valueOf(age));  
+    
+    
+    
+    if(!camera.equals("ALL"))
+    	query.setParameter("camera",camera);  
+    
+    return (List<CountDateDTO>)query.getResultList();
+    
+}
+
 
 }

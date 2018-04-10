@@ -179,4 +179,13 @@ public class PersonDataResource {
         return result;
     }
     
+    @PostMapping("/person-data/timeSeriesAgeAndGenderReportAll")
+    @Timed
+    public List<CountDateDTO> getTimeSeriesAgeAndGenderReport(@RequestBody GenderQueryVM genderQueryVM) {
+        //log.debug("REST request to get PersonData : {}", id);
+        List<CountDateDTO> result =reportService.getTimeSeriesAgeAndGenderReport(genderQueryVM.getStartDate(), genderQueryVM.getEndDate(), genderQueryVM.getCamera(),genderQueryVM.getGender(),genderQueryVM.getAge());
+        
+        return result;
+    }
+    
 }

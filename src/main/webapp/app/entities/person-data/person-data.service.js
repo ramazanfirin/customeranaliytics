@@ -94,6 +94,18 @@
                 isArray: true,
                 url:'/api/person-data/timeSeriesGenderReportAll'
             },
+            
+            'timeSeriesAgeAndGenderReportAll': {
+                method: 'POST',
+                transformRequest: function (data) {
+                    var copy = angular.copy(data);
+                    copy.startDate = DateUtils.convertLocalDateToServer(copy.startDate);
+                    copy.endDate = DateUtils.convertLocalDateToServer(copy.endDate);
+                    return angular.toJson(copy);
+                },
+                isArray: true,
+                url:'/api/person-data/timeSeriesAgeAndGenderReportAll'
+            },
         });
     }
 })();

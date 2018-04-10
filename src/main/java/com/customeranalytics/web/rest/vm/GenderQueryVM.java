@@ -9,6 +9,7 @@ public class GenderQueryVM {
 	LocalDate endDate;
 	String camera;
 	String gender;
+	String age;
 	
 	public LocalDate getStartDate() {
 		return startDate;
@@ -33,6 +34,12 @@ public class GenderQueryVM {
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
 	}
 	
 	
