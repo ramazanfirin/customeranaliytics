@@ -26,6 +26,7 @@ import com.customeranalytics.web.rest.util.HeaderUtil;
 import com.customeranalytics.web.rest.vm.GenderQueryVM;
 import com.customeranalytics.web.rest.vm.reports.AgeGenderReportDTO;
 import com.customeranalytics.web.rest.vm.reports.AgeReportDTO;
+import com.customeranalytics.web.rest.vm.reports.CountDateDTO;
 import com.customeranalytics.web.rest.vm.reports.GenderReportDTO;
 
 import io.github.jhipster.web.util.ResponseUtil;
@@ -156,6 +157,24 @@ public class PersonDataResource {
     public List<AgeGenderReportDTO> getAgeGenderReports(@RequestBody GenderQueryVM genderQueryVM) {
         //log.debug("REST request to get PersonData : {}", id);
         List<AgeGenderReportDTO> result =reportService.getGenderAgeReport(genderQueryVM.getStartDate(), genderQueryVM.getEndDate(), genderQueryVM.getCamera());
+        
+        return result;
+    }
+    
+    @PostMapping("/person-data/timeSeriesGenderReport")
+    @Timed
+    public List<CountDateDTO> getTimeSeriesGenderReport(@RequestBody GenderQueryVM genderQueryVM) {
+        //log.debug("REST request to get PersonData : {}", id);
+        List<CountDateDTO> result =reportService.getTimeSeriesGenderReport(genderQueryVM.getStartDate(), genderQueryVM.getEndDate(), genderQueryVM.getCamera(),genderQueryVM.getGender());
+        
+        return result;
+    }
+    
+    @PostMapping("/person-data/timeSeriesGenderReportAll")
+    @Timed
+    public List<CountDateDTO> getTimeSeriesGenderReportAll(@RequestBody GenderQueryVM genderQueryVM) {
+        //log.debug("REST request to get PersonData : {}", id);
+        List<CountDateDTO> result =reportService.getTimeSeriesGenderReportAll(genderQueryVM.getStartDate(), genderQueryVM.getEndDate(), genderQueryVM.getCamera());
         
         return result;
     }

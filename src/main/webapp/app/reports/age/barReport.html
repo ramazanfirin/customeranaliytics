@@ -37,11 +37,18 @@
       
       <div class="row">
       <div class="col-md-4">
-<canvas id="base" class="chart-bar" chart-options="vm.options"
-  chart-data="vm.data" chart-labels="vm.labels" >
-</canvas>  
+<!-- <canvas id="base" class="chart-bar" chart-options="vm.options" -->
+<!--   chart-data="vm.data" chart-labels="vm.labels" > -->
+<!-- </canvas>   -->
         </div>
         
+        <div class="col-md-12">
+        	<canvas id="line" class="chart chart-line" chart-data="vm.data"
+				chart-labels="vm.labels" chart-series="vm.series" chart-options="vm.options"
+			chart-dataset-override="vm.datasetOverride">
+			</canvas>
+        
+        </div>
         
         </div>
         
