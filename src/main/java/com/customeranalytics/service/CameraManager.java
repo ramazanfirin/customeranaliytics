@@ -61,7 +61,7 @@ public class CameraManager {
 	
 	 @PostConstruct
 	public void init() throws IOException{
-		start();
+		//start();
 	}
 	
 	public CameraManager(CameraRepository cameraRepository,NotifyService notifyService) throws IOException {
